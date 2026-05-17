@@ -111,7 +111,14 @@ class AddressPage:
             *self.LOGIN_BUTTON
         ).click()
 
+
     def open_addresses(self):
+
+        self.driver.get(
+            "https://demowebshop.tricentis.com/customer/addresses"
+        )
+
+    """def open_addresses(self):
 
         my_account = self.wait.until(
             EC.presence_of_element_located(
@@ -133,7 +140,7 @@ class AddressPage:
         self.driver.execute_script(
             "arguments[0].click();",
             addresses
-        )
+        )"""
 
     def click_add_new_address(self):
 
