@@ -11,8 +11,8 @@ class RemoveCartPage:
     )
 
     ADD_TO_CART_BUTTON = (
-        By.ID,
-        "add-to-cart-button-72"
+        By.CSS_SELECTOR,
+        "input[value='Add to cart']"
     )
 
     SHOPPING_CART = (
@@ -47,17 +47,20 @@ class RemoveCartPage:
 
     def add_product_to_cart(self):
 
-        self.wait.until(
-            EC.element_to_be_clickable(
-                self.PRODUCT
-            )
-        ).click()
+        self.driver.get(
+            "https://demowebshop.tricentis.com/141-inch-laptop"
+        )
 
-        self.wait.until(
-            EC.element_to_be_clickable(
+        add_cart = self.wait.until(
+            EC.presence_of_element_located(
                 self.ADD_TO_CART_BUTTON
             )
-        ).click()
+        )
+
+        self.driver.execute_script(
+            "arguments[0].click();",
+            add_cart
+        )
 
     def open_cart(self):
 

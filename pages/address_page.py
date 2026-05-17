@@ -113,17 +113,27 @@ class AddressPage:
 
     def open_addresses(self):
 
-        self.wait.until(
-            EC.element_to_be_clickable(
+        my_account = self.wait.until(
+            EC.presence_of_element_located(
                 self.MY_ACCOUNT
             )
-        ).click()
+        )
 
-        self.wait.until(
-            EC.element_to_be_clickable(
+        self.driver.execute_script(
+            "arguments[0].click();",
+            my_account
+        )
+
+        addresses = self.wait.until(
+            EC.presence_of_element_located(
                 self.ADDRESSES_LINK
             )
-        ).click()
+        )
+
+        self.driver.execute_script(
+            "arguments[0].click();",
+            addresses
+        )
 
     def click_add_new_address(self):
 
