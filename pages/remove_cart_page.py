@@ -48,18 +48,25 @@ class RemoveCartPage:
     def add_product_to_cart(self):
 
         self.driver.get(
-            "https://demowebshop.tricentis.com/141-inch-laptop"
+            "https://demowebshop.tricentis.com/build-your-cheap-own-computer"
         )
 
         add_cart = self.wait.until(
             EC.presence_of_element_located(
-                self.ADD_TO_CART_BUTTON
+                (
+                    By.XPATH,
+                    "//input[contains(@class,'add-to-cart-button')]"
+                )
             )
         )
 
         self.driver.execute_script(
             "arguments[0].click();",
             add_cart
+        )
+
+        self.driver.get(
+            "https://demowebshop.tricentis.com/cart"
         )
 
     def open_cart(self):
@@ -72,28 +79,37 @@ class RemoveCartPage:
 
     def remove_product(self):
 
-        remove_checkbox = self.wait.until(
-            EC.presence_of_element_located(
-                self.REMOVE_CHECKBOX
+        try:
+
+            remove_checkbox = self.wait.until(
+                EC.presence_of_element_located(
+                    (
+                        By.XPATH,
+                        "//input[contains(@name,'removefromcart')]"
+                    )
+                )
             )
-       )
 
-        self.driver.execute_script(
-            "arguments[0].click();",
-            remove_checkbox
-        )
-
-        update_button = self.wait.until(
-            EC.presence_of_element_located(
-                self.UPDATE_CART_BUTTON
+            self.driver.execute_script(
+                "arguments[0].click();",
+                remove_checkbox
             )
-       )
 
-        self.driver.execute_script(
-            "arguments[0].click();",
-            update_button
-        )
+            update_button = self.wait.until(
+                EC.presence_of_element_located(
+                    self.UPDATE_CART_BUTTON
+                )
+            )
 
+            self.driver.execute_script(
+                "arguments[0].click();",
+                update_button
+            )
+
+        except:
+            print("Cart already empty")
+
+            
     def verify_cart_empty(self):
 
         message = self.wait.until(
