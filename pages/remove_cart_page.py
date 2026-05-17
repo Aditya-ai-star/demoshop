@@ -21,10 +21,11 @@ class RemoveCartPage:
     )
 
     REMOVE_CHECKBOX = (
-        By.NAME,
-        "removefromcart"
+        By.XPATH,
+        "//input[contains(@name,'removefromcart')]"
     )
 
+    
     UPDATE_CART_BUTTON = (
         By.NAME,
         "updatecart"
@@ -68,17 +69,27 @@ class RemoveCartPage:
 
     def remove_product(self):
 
-        self.wait.until(
-            EC.element_to_be_clickable(
+        remove_checkbox = self.wait.until(
+            EC.presence_of_element_located(
                 self.REMOVE_CHECKBOX
             )
-        ).click()
+       )
 
-        self.wait.until(
-            EC.element_to_be_clickable(
+        self.driver.execute_script(
+            "arguments[0].click();",
+            remove_checkbox
+        )
+
+        update_button = self.wait.until(
+            EC.presence_of_element_located(
                 self.UPDATE_CART_BUTTON
             )
-        ).click()
+       )
+
+        self.driver.execute_script(
+            "arguments[0].click();",
+            update_button
+        )
 
     def verify_cart_empty(self):
 
