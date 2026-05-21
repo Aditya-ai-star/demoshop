@@ -2,7 +2,7 @@ from pytest_bdd import scenarios, given, when, then
 from pages.cart_page import CartPage
 
 
-scenarios("../features/add_to_cart.feature")
+scenarios("../features/cart.feature")
 
 
 @given("user opens homepage")
