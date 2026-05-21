@@ -1,9 +1,9 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from pages.base_page import BasePage
 
-
-class SearchPage:
+class SearchPage(BasePage):
 
     SEARCH_BOX = (By.ID, "small-searchterms")
     SEARCH_BUTTON = (By.CSS_SELECTOR, "input.search-box-button")
@@ -13,12 +13,10 @@ class SearchPage:
         "//h2[@class='product-title']/a"
     )
 
-    def __init__(self, driver):
-        self.driver = driver
-        self.wait = WebDriverWait(driver, 10)
+    
 
     def open_homepage(self):
-        self.driver.get(
+        self.open_url(
             "https://demowebshop.tricentis.com/"
         )
 

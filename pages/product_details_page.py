@@ -1,9 +1,9 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from pages.base_page import BasePage
 
-
-class ProductDetailsPage:
+class ProductDetailsPage(BasePage):
 
     PRODUCT_TITLE = (
         By.CLASS_NAME,
@@ -20,14 +20,11 @@ class ProductDetailsPage:
         "add-to-cart-button-31"
     )
 
-    def __init__(self, driver):
-
-        self.driver = driver
-        self.wait = WebDriverWait(driver, 10)
+    
 
     def open_product_page(self):
 
-        self.driver.get(
+        self.open_url(
             "https://demowebshop.tricentis.com/141-inch-laptop"
         )
 

@@ -2,9 +2,9 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.support import expected_conditions as EC
+from pages.base_page import BasePage
 
-
-class ProductSortingPage:
+class ProductSortingPage(BasePage):
 
     SORT_DROPDOWN = (
         By.ID,
@@ -16,14 +16,11 @@ class ProductSortingPage:
         "price.actual-price"
     )
 
-    def __init__(self, driver):
-
-        self.driver = driver
-        self.wait = WebDriverWait(driver, 15)
+    
 
     def open_category_page(self):
 
-        self.driver.get(
+        self.open_url(
             "https://demowebshop.tricentis.com/apparel-shoes"
         )
 

@@ -2,27 +2,18 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.support import expected_conditions as EC
+from pages.base_page import BasePage
 
-
-class AddressPage:
+class AddressPage(BasePage):
 
     EMAIL = (By.ID, "Email")
     PASSWORD = (By.ID, "Password")
 
-    LOGIN_BUTTON = (
-        By.CSS_SELECTOR,
-        "input.login-button"
-    )
+    LOGIN_BUTTON = (By.CSS_SELECTOR,"input.login-button")
 
-    MY_ACCOUNT = (
-        By.LINK_TEXT,
-        "My account"
-    )
+    MY_ACCOUNT = (By.LINK_TEXT,"My account")
 
-    ADDRESSES_LINK = (
-        By.LINK_TEXT,
-        "Addresses"
-    )
+    ADDRESSES_LINK = (By.LINK_TEXT,"Addresses")
 
     ADD_NEW_BUTTON = (
         By.CSS_SELECTOR,
@@ -84,14 +75,11 @@ class AddressPage:
         "div.section.address-item"
     )
 
-    def __init__(self, driver):
-
-        self.driver = driver
-        self.wait = WebDriverWait(driver, 15)
+    
 
     def open_login_page(self):
 
-        self.driver.get(
+        self.open_url(
             "https://demowebshop.tricentis.com/login"
         )
 

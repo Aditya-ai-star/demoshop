@@ -3,9 +3,9 @@ import random
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from pages.base_page import BasePage
 
-
-class RegisterPage:
+class RegisterPage(BasePage):
 
     GENDER = (
         By.ID,
@@ -47,14 +47,11 @@ class RegisterPage:
         "result"
     )
 
-    def __init__(self, driver):
-
-        self.driver = driver
-        self.wait = WebDriverWait(driver, 15)
+    
 
     def open_register_page(self):
 
-        self.driver.get(
+        self.open_url(
             "https://demowebshop.tricentis.com/register"
         )
 

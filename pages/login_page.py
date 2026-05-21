@@ -1,18 +1,16 @@
 from selenium.webdriver.common.by import By
+from pages.base_page import BasePage
 
-
-class LoginPage:
+class LoginPage(BasePage):
 
     EMAIL = (By.ID, "Email")
     PASSWORD = (By.ID, "Password")
     LOGIN_BUTTON = (By.CSS_SELECTOR, "input.login-button")
     LOGOUT_LINK = (By.LINK_TEXT, "Log out")
 
-    def __init__(self, driver):
-        self.driver = driver
-
+    
     def open(self):
-        self.driver.get(
+        self.open_url(
             "https://demowebshop.tricentis.com/login"
         )
 
